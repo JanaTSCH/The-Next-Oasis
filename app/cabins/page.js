@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
 
+//in secs - once pro hour - 3600
+//in secs - once pro day - 86400
+//in secs - once pro minute - 60
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Cabins",
 };
