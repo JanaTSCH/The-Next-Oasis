@@ -1,17 +1,22 @@
 import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
+import Filter from "../_components/Filter";
 
 //in secs - once pro hour - 3600
 //in secs - once pro day - 86400
 //in secs - once pro minute - 60
-export const revalidate = 3600;
+// export const revalidate = 3600;
+
+//with search-params its now dynamic and no need for revalidate
 
 export const metadata = {
   title: "Cabins",
 };
 
-export default function Page() {
+// we use filter in suspense as a key to trigger fallback and spinner
+export default function Page({ searchParams }) {
+  const filter = searchParams?.capacity ?? "all";
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -25,9 +30,12 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div className="flex justify-end mb-8">
+        <Filter filter={filter} />
+      </div>
 
-      <Suspense fallback={<Spinner />}>
-        <CabinList />
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
