@@ -8,9 +8,6 @@ const authConfig = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
-  //   pages: {
-  //     signIn: "/",
-  //   },
 };
 
 export const {
