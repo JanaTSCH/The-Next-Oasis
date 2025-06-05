@@ -1,10 +1,7 @@
 import { eachDayOfInterval } from "date-fns";
 import { notFound } from "next/navigation";
 
-// import { supabase } from "./supabase";
-
-import { createSupabaseClient } from "./supabase";
-const supabase = createSupabaseClient();
+import { supabase } from "./supabase";
 
 /////////////
 // GET
@@ -187,20 +184,7 @@ export async function createBooking(newBooking) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
-export async function updateGuest(id, updatedFields) {
-  const { data, error } = await supabase
-    .from("guests")
-    .update(updatedFields)
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error("Guest could not be updated");
-  }
-  return data;
-}
+/*
 
 export async function updateBooking(id, updatedFields) {
   const { data, error } = await supabase
@@ -229,3 +213,4 @@ export async function deleteBooking(id) {
   }
   return data;
 }
+*/
